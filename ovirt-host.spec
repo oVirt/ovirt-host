@@ -13,7 +13,6 @@ BuildArch:	noarch
 Requires:	collectd
 Requires:	collectd-disk
 Requires:	collectd-netlink
-Requires:	collectd-virt
 Requires:	collectd-write_http
 %ifarch %{ix86} x86_64
 Requires:	dmidecode
