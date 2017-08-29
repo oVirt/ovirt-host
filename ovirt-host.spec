@@ -10,9 +10,6 @@ URL:		http://www.ovirt.org
 Source0:	LICENSE
 BuildArch:	noarch
 
-%description
-This meta package pulls in all the dependencies needed for an oVirt hosts.
-
 Requires:	%{name}-dependencies = %{version}-%{release}
 
 #Inherited from oVirt Node
@@ -49,6 +46,8 @@ Requires:	NetworkManager-config-server
 # RHEL, keeping them in oVirt Node only
 # Requires:	vdsm-gluster -> glusterfs-server
 
+%description
+This meta package pulls in all the dependencies needed for an oVirt hosts.
 
 %package dependencies
 Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts.
