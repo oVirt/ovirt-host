@@ -26,6 +26,7 @@ Requires:	vdsm-hook-vfio-mdev
 Requires:	vdsm-hook-vmfex-dev
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
+Requires:	ovirt-provider-ovn-driver
 Requires:	postfix
 Requires:	mailx
 Requires:	dracut-fips
