@@ -15,6 +15,7 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 #Inherited from oVirt Node
 Requires:	cockpit
 Requires:	cockpit-dashboard
+Requires:	cockpit-networkmanager
 Requires:	cockpit-ovirt-dashboard
 Requires:	firewalld
 Requires:	rng-tools
