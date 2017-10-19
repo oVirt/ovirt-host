@@ -12,7 +12,7 @@ pushd exported-artifacts
     yum reinstall -y system-release yum
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
-    yum install -y ovirt-release-master
+    yum install -y ovirt-release41
     rm -f /etc/yum/yum.conf
     yum repolist enabled
     yum --downloadonly install *noarch.rpm

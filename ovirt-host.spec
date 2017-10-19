@@ -1,7 +1,7 @@
-%global vdsm_version 4.20.0
+%global vdsm_version 4.19.0
 
 Name:		ovirt-host
-Version:	4.2.0
+Version:	4.1.0
 Release:	0.0.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
@@ -31,7 +31,7 @@ Requires:	tar
 Requires:	tuned
 Requires:	util-linux
 Requires:	vdsm >= %{vdsm_version}
-Requires:	vdsm-client >= %{vdsm_version}
+Requires:	vdsm-cli >= %{vdsm_version}
 
 
 %description
@@ -50,5 +50,5 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
-* Mon Jun 12 2017 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0
-- Initial import
+* Tue Oct 17 2017 - Yedidyah Bar David <didi@redhat.com> - 4.1.0
+- Initial 4.1 version
