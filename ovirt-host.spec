@@ -40,6 +40,12 @@ This meta package pulls in all the dependencies needed for minimal oVirt hosts.
 %prep
 cp %{SOURCE0} .
 
+%build
+# No build needed
+
+%install
+# No build needed
+
 %files
 %license LICENSE
 
