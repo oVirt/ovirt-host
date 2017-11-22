@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.1.0
-Release:	1.0.master%{?release_suffix}%{?dist}
+Release:	1.1.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -33,6 +33,8 @@ Requires:	util-linux
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-cli >= %{vdsm_version}
 
+# from https://bugzilla.redhat.com/show_bug.cgi?id=1490041
+Requires:	ipa-client
 
 %description
 This meta package pulls in all the dependencies needed for minimal oVirt hosts.
