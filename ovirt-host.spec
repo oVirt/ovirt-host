@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.2.0
-Release:	0.0.master%{?release_suffix}%{?dist}
+Release:	0.1.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -39,6 +39,9 @@ Requires:	net-snmp-utils
 
 # Hack to include the passive NM config: https://bugzilla.redhat.com/1326798
 Requires:	NetworkManager-config-server
+
+# from https://bugzilla.redhat.com/show_bug.cgi?id=1490041
+Requires:	ipa-client
 
 # the following packages requires a RHGS subscription on RHEL, keeping them
 # in oVirt Node only
