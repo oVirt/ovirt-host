@@ -20,7 +20,9 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 Requires:	cockpit
 Requires:	cockpit-dashboard
 Requires:	cockpit-networkmanager
+%ifnarch s390 s390x
 Requires:	cockpit-ovirt-dashboard
+%endif
 Requires:	firewalld
 Requires:	rng-tools
 Requires:	vdsm-hook-fcoe
@@ -29,8 +31,10 @@ Requires:	vdsm-hook-openstacknet
 Requires:	vdsm-hook-ethtool-options
 Requires:	vdsm-hook-vfio-mdev
 Requires:	vdsm-hook-vmfex-dev
+%ifnarch s390 s390x
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
+%endif
 Requires:	ovirt-provider-ovn-driver
 Requires:	postfix
 Requires:	mailx
@@ -67,14 +71,18 @@ Requires:	collectd-write_http
 %ifarch %{ix86} x86_64
 Requires:	dmidecode
 %endif
+%ifnarch s390 s390x
 Requires:	fluentd
+%endif
 Requires:	kexec-tools
 Requires:	ovirt-vmconsole
 Requires:	ovirt-vmconsole-host
+%ifnarch s390 s390x
 Requires:	rubygem-fluent-plugin-collectd-nest
 Requires:	rubygem-fluent-plugin-rewrite-tag-filter
 Requires:	rubygem-fluent-plugin-secure-forward
 Requires:	rubygem-fluent-plugin-viaq_data_model
+%endif
 Requires:	socat
 Requires:	tar
 Requires:	tuned
