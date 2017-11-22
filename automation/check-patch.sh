@@ -15,5 +15,5 @@ pushd exported-artifacts
     yum install -y ovirt-release-master
     rm -f /etc/yum/yum.conf
     yum repolist enabled
-    yum --downloadonly install *noarch.rpm
+    yum --downloadonly install *$(arch).rpm
 popd
