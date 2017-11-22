@@ -8,7 +8,11 @@ License:	ASL 2.0
 URL:		http://www.ovirt.org
 
 Source0:	LICENSE
-BuildArch:	noarch
+
+# It was wrong to build as noarch, because there are
+# arch-specific dependencies.
+Obsoletes:	%{name}.noarch <= %{version}-%{release}
+Conflicts:	%{name}.noarch
 
 Requires:	collectd
 Requires:	collectd-disk
