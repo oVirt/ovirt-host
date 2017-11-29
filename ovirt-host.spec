@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.2.0
-Release:	1%{?release_suffix}%{?dist}
+Release:	1.1.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
