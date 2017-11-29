@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.2.0
-Release:	0.1.master%{?release_suffix}%{?dist}
+Release:	0.2.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -11,8 +11,8 @@ Source0:	LICENSE
 
 # It was wrong to build as noarch, because there are
 # arch-specific dependencies.
-Obsoletes:      %{name}.noarch <= %{version}-%{release}
-Conflicts:      %{name}.noarch
+Obsoletes:	%{name}.noarch <= %{version}-%{release}
+Conflicts:	%{name}.noarch
 
 Requires:	%{name}-dependencies = %{version}-%{release}
 
@@ -20,7 +20,7 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 Requires:	cockpit
 Requires:	cockpit-dashboard
 Requires:	cockpit-networkmanager
-%ifnarch s390 s390x
+%ifarch x86_64
 Requires:	cockpit-ovirt-dashboard
 %endif
 Requires:	firewalld
@@ -31,7 +31,7 @@ Requires:	vdsm-hook-openstacknet
 Requires:	vdsm-hook-ethtool-options
 Requires:	vdsm-hook-vfio-mdev
 Requires:	vdsm-hook-vmfex-dev
-%ifnarch s390 s390x
+%ifarch x86_64
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 %endif
