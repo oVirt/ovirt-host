@@ -34,8 +34,8 @@ Requires:	vdsm-hook-vmfex-dev
 %ifarch x86_64
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
-%endif
 Requires:	ovirt-provider-ovn-driver
+%endif
 Requires:	postfix
 Requires:	mailx
 Requires:	dracut-fips
