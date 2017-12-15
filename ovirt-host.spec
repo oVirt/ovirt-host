@@ -1,8 +1,8 @@
 %global vdsm_version 4.19.0
 
 Name:		ovirt-host
-Version:	4.1.0
-Release:	2.0.master%{?release_suffix}%{?dist}
+Version:	4.1.1
+Release:	0.0.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -39,6 +39,12 @@ Requires:	vdsm-cli >= %{vdsm_version}
 
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1490041
 Requires:	ipa-client
+
+# from https://bugzilla.redhat.com/show_bug.cgi?id=1425032
+# katello-agent has been dropped from Fedora on fc22 but it's still built
+# on https://fedorapeople.org/groups/katello/releases/yum/latest/client/
+# packages will be imported in oVirt repo.
+Requires:	katello-agent
 
 %description
 This meta package pulls in all the dependencies needed for minimal oVirt hosts.
