@@ -1,8 +1,8 @@
 %global vdsm_version 4.19.0
 
 Name:		ovirt-host
-Version:	4.1.1
-Release:	1%{?dist}
+Version:	4.1.2
+Release:	0.0.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
