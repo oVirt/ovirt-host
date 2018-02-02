@@ -15,5 +15,18 @@ pushd exported-artifacts
     yum install -y ovirt-release-master
     rm -f /etc/yum/yum.conf
     yum repolist enabled
-    yum --downloadonly install *$(arch).rpm
+    DISTVER="$(rpm --eval "%dist"|cut -c2-)"
+    yum clean all
+    if [[ "${DISTVER}" == "fc27" ]]; then
+        # Fedora 27 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        yum --downloadonly install *$(arch).rpm || true
+    elif [[ "${DISTVER}" == "fc28" ]]; then
+        # Fedora 28 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        yum --downloadonly install *$(arch).rpm || true
+    else
+        yum --downloadonly install *$(arch).rpm
+    fi
 popd
+

@@ -1,7 +1,7 @@
 %global vdsm_version 4.20.2
 
 Name:		ovirt-host
-Version:	4.2.2
+Version:	4.3.0
 Release:	0.0.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
