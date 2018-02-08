@@ -74,6 +74,7 @@ Requires:	collectd
 Requires:	collectd-disk
 Requires:	collectd-netlink
 Requires:	collectd-write_http
+Requires:	collectd-virt
 %ifarch %{ix86} x86_64
 Requires:	dmidecode
 %endif
