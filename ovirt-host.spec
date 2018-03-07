@@ -51,11 +51,13 @@ Requires:	NetworkManager-config-server
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1490041
 Requires:	ipa-client
 
+%ifarch x86_64
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1425032
 # katello-agent has been dropped from Fedora on fc22 but it's still built
 # on https://fedorapeople.org/groups/katello/releases/yum/latest/client/
 # packages will be imported in oVirt repo.
 Requires:	katello-agent
+%endif
 
 # the following packages requires a RHGS subscription on RHEL, keeping them
 # in oVirt Node only
