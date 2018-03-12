@@ -24,6 +24,7 @@ Requires:	cockpit-networkmanager
 Requires:	cockpit-ovirt-dashboard
 %endif
 Requires:	firewalld
+Requires:	python-firewall
 Requires:	rng-tools
 Requires:	vdsm-hook-fcoe
 Requires:	vdsm-hook-vhostmd
