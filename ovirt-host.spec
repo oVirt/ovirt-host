@@ -1,8 +1,8 @@
 %global vdsm_version 4.20.2
 
 Name:		ovirt-host
-Version:	4.2.3
-Release:	0.0.master%{?release_suffix}%{?dist}
+Version:	4.2.2
+Release:	2%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -123,6 +123,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Tue Mar 13 2018 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.2-2
+- 4.2.2-2
+
 * Mon Feb 19 2018 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.2-1
 - 4.2.2-1
 
