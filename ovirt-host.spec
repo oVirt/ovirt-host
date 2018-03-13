@@ -92,6 +92,7 @@ Requires:	rubygem-fluent-plugin-collectd-nest
 Requires:	rubygem-fluent-plugin-rewrite-tag-filter
 Requires:	rubygem-fluent-plugin-secure-forward
 Requires:	rubygem-fluent-plugin-viaq_data_model
+Requires:	rubygem-fluent-plugin-elasticsearch
 %endif
 Requires:	socat
 Requires:	tar
