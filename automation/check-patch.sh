@@ -14,8 +14,12 @@ pushd exported-artifacts
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
     yum install -y ovirt-release-master
     rm -f /etc/yum/yum.conf
-    yum repolist enabled
     DISTVER="$(rpm --eval "%dist"|cut -c2-)"
+    if [[ "${DISTVER}" == "el7.centos" ]]; then
+        #Enable CR repo
+        sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
+    fi
+    yum repolist enabled
     yum clean all
     if [[ "${DISTVER}" == "fc27" ]]; then
         # Fedora 27 support is broken, just provide a hint on what's missing
