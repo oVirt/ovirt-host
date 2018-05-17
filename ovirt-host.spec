@@ -1,4 +1,4 @@
-%global vdsm_version 4.20.2
+%global vdsm_version 4.30.0
 
 Name:		ovirt-host
 Version:	4.3.0
