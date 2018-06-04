@@ -25,7 +25,11 @@ Requires:	cockpit-machines-ovirt
 Requires:	cockpit-ovirt-dashboard
 %endif
 Requires:	firewalld
+%if 0%{?fedora} || 0%{?rhel} >= 8
+Requires:	python3-firewall
+%else
 Requires:	python-firewall
+%endif
 Requires:	rng-tools
 Requires:	vdsm-hook-fcoe
 Requires:	vdsm-hook-vhostmd
@@ -82,19 +86,22 @@ Requires:	collectd-virt
 %ifarch %{ix86} x86_64
 Requires:	dmidecode
 %endif
-%ifnarch s390 s390x
-Requires:	fluentd
-%endif
 Requires:	kexec-tools
 Requires:	ovirt-vmconsole
 Requires:	ovirt-vmconsole-host
+
 %ifnarch s390 s390x
+%if 0%{?rhel}
+#Keeping fluentd on el7 until we remove ansible code requiring it in ovirt-engine-metrics
+Requires:	fluentd
 Requires:	rubygem-fluent-plugin-collectd-nest
 Requires:	rubygem-fluent-plugin-rewrite-tag-filter
 Requires:	rubygem-fluent-plugin-secure-forward
 Requires:	rubygem-fluent-plugin-viaq_data_model
 Requires:	rubygem-fluent-plugin-elasticsearch
 %endif
+%endif
+
 Requires:	socat
 Requires:	tar
 Requires:	tuned
