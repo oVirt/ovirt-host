@@ -42,7 +42,10 @@ Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 Requires:	ovirt-provider-ovn-driver
 %endif
-Requires:	postfix
+Requires:	server(smtp)
+%if 0%{?fedora} || 0%{?rhel} > 7
+Suggests:	postfix
+%endif
 Requires:	mailx
 Requires:	dracut-fips
 Requires:	screen
