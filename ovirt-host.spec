@@ -64,6 +64,10 @@ Requires:	ipa-client
 Requires:	openscap
 Requires:	openscap-utils
 Requires:	scap-security-guide
+%if 0%{?rhel}
+Requires:	pam_pkcs11
+%endif
+Requires:	aide
 
 
 %ifarch x86_64
