@@ -103,17 +103,14 @@ Requires:	kexec-tools
 Requires:	ovirt-vmconsole
 Requires:	ovirt-vmconsole-host
 
-%ifnarch s390 s390x
-%if 0%{?rhel}
-#Keeping fluentd on el7 until we remove ansible code requiring it in ovirt-engine-metrics
-Requires:	fluentd
-Requires:	rubygem-fluent-plugin-collectd-nest
-Requires:	rubygem-fluent-plugin-rewrite-tag-filter
-Requires:	rubygem-fluent-plugin-secure-forward
-Requires:	rubygem-fluent-plugin-viaq_data_model
-Requires:	rubygem-fluent-plugin-elasticsearch
-%endif
-%endif
+# Requirements for ovirt-engine-metrics
+Requires:	rsyslog
+Requires:	rsyslog-elasticsearch
+Requires:	rsyslog-mmjsonparse
+Requires:	rsyslog-mmnormalize
+Requires:	libfastjson
+Requires:	liblognorm
+Requires:	libestr
 
 Requires:	socat
 Requires:	tar
