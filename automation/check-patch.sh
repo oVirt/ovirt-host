@@ -28,8 +28,8 @@ pushd exported-artifacts
     fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
-    if [[ "${DISTVER}" == "fc28" ]]; then
-        # Fedora 28 support is broken, just provide a hint on what's missing
+    if [[ "$(rpm --eval "%_arch")" == "s390x" ]]; then
+        # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
     else
