@@ -96,6 +96,12 @@ Requires:	collectd-disk
 Requires:	collectd-netlink
 Requires:	collectd-write_http
 Requires:	collectd-virt
+
+%if 0%{?rhel}
+# collectd-write_syslog is available only on EL7
+Requires:	collectd-write_syslog
+%endif
+
 %ifarch %{ix86} x86_64
 Requires:	dmidecode
 %endif
