@@ -20,7 +20,7 @@ pushd exported-artifacts
     ${PACKAGER} reinstall -y system-release ${PACKAGER}
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
-    ${PACKAGER} install -y ovirt-release43-pre
+    ${PACKAGER} install -y ovirt-release43-snapshot
     rm -f /etc/yum/yum.conf
     if [[ "${DISTVER}" == "el" ]]; then
         #Enable CR repo
