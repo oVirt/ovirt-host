@@ -35,7 +35,6 @@ Requires:	vdsm-hook-fcoe
 Requires:	vdsm-hook-vhostmd
 Requires:	vdsm-hook-openstacknet
 Requires:	vdsm-hook-ethtool-options
-Requires:	vdsm-hook-vfio-mdev
 Requires:	vdsm-hook-vmfex-dev
 %ifarch x86_64
 Requires:	glusterfs-rdma
