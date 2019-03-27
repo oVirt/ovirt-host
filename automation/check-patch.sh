@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
+
 ./automation/build-artifacts.sh
 
 DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
