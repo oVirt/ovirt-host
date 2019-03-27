@@ -121,6 +121,9 @@ Requires:	socat
 Requires:	tar
 Requires:	tuned
 Requires:	util-linux
+%ifarch x86_64
+Requires:       v2v-conversion-host-wrapper
+%endif
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-client >= %{vdsm_version}
 
