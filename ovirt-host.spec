@@ -1,8 +1,8 @@
-%global vdsm_version 4.30.11
+%global vdsm_version 4.30.12
 
 Name:		ovirt-host
 Version:	4.3.2
-Release:	0.0.master%{?release_suffix}%{?dist}
+Release:	1%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -122,7 +122,7 @@ Requires:	tar
 Requires:	tuned
 Requires:	util-linux
 %ifarch x86_64
-Requires:       v2v-conversion-host-wrapper
+Requires:	v2v-conversion-host-wrapper
 %endif
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-client >= %{vdsm_version}
@@ -149,6 +149,12 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Wed Mar 27 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.2-1
+- 4.3.2-1
+- spec: require v2v-conversion-host-wrapper
+- cleaning: drop vdsm-hook-vfio-mdev dependency
+- spec: require latest vdsm
+
 * Mon Feb 18 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.1-1
 - 4.3.1-1
 - spec: require collectd-write_syslog where available
