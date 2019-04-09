@@ -20,7 +20,6 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 Requires:	cockpit
 Requires:	cockpit-dashboard
 Requires:	cockpit-networkmanager
-Requires:	cockpit-machines-ovirt
 %ifarch x86_64
 Requires:	cockpit-ovirt-dashboard
 %endif
