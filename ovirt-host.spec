@@ -121,10 +121,21 @@ Requires:	tar
 Requires:	tuned
 Requires:	util-linux
 %ifarch x86_64
-Requires:       v2v-conversion-host-wrapper
+Requires:	v2v-conversion-host-wrapper
 %endif
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-client >= %{vdsm_version}
+
+%ifarch x86_64
+#{ CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
+%if 0%{?rhel}
+Requires:	microcode_ctl >= 2.1-47.2
+%else
+Requires:	microcode_ctl >= 2.1-29
+%endif
+#}
+%endif
+
 
 %description dependencies
 This meta package pulls in all the dependencies needed for minimal oVirt hosts.
