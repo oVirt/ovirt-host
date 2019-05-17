@@ -86,7 +86,7 @@ Requires:	katello-agent
 # Requires:	vdsm-gluster -> glusterfs-server
 
 %description
-This meta package pulls in all the dependencies needed for an oVirt hosts.
+This meta package pulls in all the dependencies needed for an oVirt hosts
 
 %package dependencies
 Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts.
@@ -160,6 +160,12 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Fri May 17 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.3-1
+- 4.3.3-1
+- CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
+- Resolves: BZ#1710918
+- spec: require updated microcode_ctl
+
 * Wed Mar 27 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.2-1
 - 4.3.2-1
 - spec: require v2v-conversion-host-wrapper
