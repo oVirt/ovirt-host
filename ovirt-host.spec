@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.4.0
-Release:	0.0.master%{?release_suffix}%{?dist}
+Release:	0.1.master%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -46,9 +46,9 @@ Suggests:	postfix
 %endif
 Requires:	mailx
 Requires:	dracut-fips
-Requires:	screen
 Requires:	sysstat
 Requires:	tcpdump
+Requires:	tmux
 Requires:	net-snmp
 Requires:	net-snmp-utils
 
