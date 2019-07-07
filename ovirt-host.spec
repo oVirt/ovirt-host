@@ -68,6 +68,11 @@ Requires:	pam_pkcs11
 %endif
 Requires:	aide
 
+# https://bugzilla.redhat.com/show_bug.cgi?id=1722173
+Requires:	iperf3
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1725954
+Requires:	libvirt-admin
 
 %ifarch x86_64
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1425032
