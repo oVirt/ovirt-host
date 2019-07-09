@@ -1,8 +1,8 @@
-%global vdsm_version 4.30.15
+%global vdsm_version 4.30.24
 
 Name:		ovirt-host
 Version:	4.3.4
-Release:	0.0.master%{?release_suffix}%{?dist}
+Release:	1%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		http://www.ovirt.org
@@ -94,7 +94,7 @@ Requires:	katello-agent
 This meta package pulls in all the dependencies needed for an oVirt hosts
 
 %package dependencies
-Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts.
+Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts
 Requires:	collectd
 Requires:	collectd-disk
 Requires:	collectd-netlink
@@ -165,6 +165,11 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Tue Jul 09 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.4-1
+- 4.3.4-1
+- Resolves: BZ#1722173
+- Resolves: BZ#1725954
+
 * Fri May 17 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.3-1
 - 4.3.3-1
 - CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
