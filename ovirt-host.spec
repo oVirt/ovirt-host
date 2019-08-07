@@ -64,6 +64,8 @@ Requires:	openscap-utils
 Requires:	scap-security-guide
 %if 0%{?rhel} > 0 && 0%{?rhel} < 8
 Requires:	pam_pkcs11
+Requires:	coolkey
+Requires:	opensc
 %endif
 Requires:	aide
 
