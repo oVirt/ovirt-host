@@ -76,6 +76,9 @@ Requires:	iperf3
 # https://bugzilla.redhat.com/show_bug.cgi?id=1725954
 Requires:	libvirt-admin
 
+# https://bugzilla.redhat.com/show_bug.cgi?id=1741792
+Requires:	clevis-dracut
+
 %ifarch x86_64
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1425032
 # katello-agent has been dropped from Fedora on fc22 but it's still built
