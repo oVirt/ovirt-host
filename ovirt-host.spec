@@ -60,7 +60,6 @@ Requires:	ipa-client
 
 # Hardening packages - from https://bugzilla.redhat.com/show_bug.cgi?id=1598318
 Requires:	openscap
-Requires:	openscap-utils
 Requires:	scap-security-guide
 %if 0%{?rhel} > 0 && 0%{?rhel} < 8
 Requires:	pam_pkcs11
