@@ -37,6 +37,9 @@ pushd exported-artifacts
     elif [[ "$(rpm --eval "%dist")" == ".fc29" ]]; then
         # we are still working on fc29 builds, just provide a hint on what's missing
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
+    elif [[ "$(rpm --eval "%dist")" == ".fc30" ]]; then
+        # we are still working on fc30 builds, just provide a hint on what's missing
+        ${PACKAGER} --downloadonly install *$(arch).rpm || true
     elif [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
         # we are still working on el8 builds, just provide a hint on what's missing
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
