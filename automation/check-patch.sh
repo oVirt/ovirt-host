@@ -4,9 +4,9 @@ LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
 
 ./automation/build-artifacts.sh
 
-DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
+DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 PACKAGER=""
-if [[ "${DISTVER}" == "el" ]]; then
+if [[ "${DISTVER}" == "el7" ]]; then
     PACKAGER=yum
 else
     PACKAGER=dnf
@@ -36,6 +36,9 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
     elif [[ "$(rpm --eval "%dist")" == ".fc29" ]]; then
         # we are still working on fc29 builds, just provide a hint on what's missing
+        ${PACKAGER} --downloadonly install *$(arch).rpm || true
+    elif [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
+        # we are still working on el8 builds, just provide a hint on what's missing
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
     else
         ${PACKAGER} --downloadonly install *$(arch).rpm
