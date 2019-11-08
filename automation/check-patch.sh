@@ -6,11 +6,7 @@ LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
 
 DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 PACKAGER=""
-if [[ "${DISTVER}" == "el7" ]]; then
-    PACKAGER=yum
-else
-    PACKAGER=dnf
-fi
+PACKAGER=dnf
 
 find \
     "$PWD/tmp.repos" \
