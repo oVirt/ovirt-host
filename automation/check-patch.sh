@@ -30,9 +30,6 @@ pushd exported-artifacts
         # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
-    elif [[ "$(rpm --eval "%dist")" == ".fc29" ]]; then
-        # we are still working on fc29 builds, just provide a hint on what's missing
-        ${PACKAGER} --downloadonly install *$(arch).rpm || true
     elif [[ "$(rpm --eval "%dist")" == ".fc30" ]]; then
         # we are still working on fc30 builds, just provide a hint on what's missing
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
