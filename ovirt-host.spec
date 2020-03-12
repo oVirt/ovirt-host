@@ -77,6 +77,9 @@ Requires:	libvirt-admin
 # https://bugzilla.redhat.com/show_bug.cgi?id=1741792
 Requires:	clevis-dracut
 
+# https://bugzilla.redhat.com/show_bug.cgi?id=1812014
+Requires: cracklib-dicts
+
 # the following packages requires a RHGS subscription on RHEL, keeping them
 # in oVirt Node only
 # Requires:	gdeploy
