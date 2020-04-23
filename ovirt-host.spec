@@ -1,18 +1,13 @@
-%global vdsm_version 4.40.0
+%global vdsm_version 4.40.13
 
 Name:		ovirt-host
 Version:	4.4.0
-Release:	0.5.beta%{?release_suffix}%{?dist}
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
-URL:		http://www.ovirt.org
+URL:		https://www.ovirt.org/
 
 Source0:	LICENSE
-
-# It was wrong to build as noarch, because there are
-# arch-specific dependencies.
-Obsoletes:	%{name}.noarch <= %{version}-%{release}
-Conflicts:	%{name}.noarch
 
 Requires:	%{name}-dependencies = %{version}-%{release}
 
@@ -24,11 +19,7 @@ Requires:	cockpit-networkmanager
 Requires:	cockpit-ovirt-dashboard
 %endif
 Requires:	firewalld
-%if 0%{?fedora} || 0%{?rhel} >= 8
 Requires:	python3-firewall
-%else
-Requires:	python-firewall
-%endif
 Requires:	rng-tools
 Requires:	vdsm-hook-fcoe
 Requires:	vdsm-hook-vhostmd
@@ -41,9 +32,7 @@ Requires:	ovirt-hosted-engine-setup
 Requires:	ovirt-provider-ovn-driver
 %endif
 Requires:	server(smtp)
-%if 0%{?fedora} || 0%{?rhel} > 7
 Suggests:	postfix
-%endif
 Requires:	mailx
 Requires:	dracut-fips
 Requires:	sysstat
@@ -61,11 +50,6 @@ Requires:	ipa-client
 # Hardening packages - from https://bugzilla.redhat.com/show_bug.cgi?id=1598318
 Requires:	openscap
 Requires:	scap-security-guide
-%if 0%{?rhel} > 0 && 0%{?rhel} < 8
-Requires:	pam_pkcs11
-Requires:	coolkey
-Requires:	opensc
-%endif
 Requires:	aide
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1722173
@@ -160,6 +144,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Thu Apr 23 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-1
+- Rebase on 4.4.0
+
 * Mon Feb 18 2019 - Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.1-1
 - 4.3.1-1
 - spec: require collectd-write_syslog where available
