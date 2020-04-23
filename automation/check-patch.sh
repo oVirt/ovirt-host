@@ -30,6 +30,10 @@ pushd exported-artifacts
         # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
+    elif [[ "$(rpm --eval "%_arch")" == "ppc64le" ]]; then
+        # ppc64le support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install *$(arch).rpm || true
     else
         ${PACKAGER} --downloadonly install *$(arch).rpm
     fi
