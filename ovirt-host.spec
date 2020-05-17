@@ -110,6 +110,7 @@ Requires:	tuned
 Requires:	util-linux
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-client >= %{vdsm_version}
+Requires:	ovirt-imageio-client
 
 %ifarch x86_64
 #{ CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
