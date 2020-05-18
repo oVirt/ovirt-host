@@ -1,8 +1,8 @@
-%global vdsm_version 4.40.13
+%global vdsm_version 4.40.16
 
 Name:		ovirt-host
 Version:	4.4.1
-Release:	0.0%{?release_suffix}%{?dist}
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -110,6 +110,8 @@ Requires:	tuned
 Requires:	util-linux
 Requires:	vdsm >= %{vdsm_version}
 Requires:	vdsm-client >= %{vdsm_version}
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1836645
 Requires:	ovirt-imageio-client
 
 %ifarch x86_64
@@ -145,6 +147,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Mon May 18 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.1-1
+- Rebase on 4.4.1
+
 * Thu Apr 23 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-1
 - Rebase on 4.4.0
 
