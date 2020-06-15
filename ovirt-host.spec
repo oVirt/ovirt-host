@@ -1,8 +1,8 @@
 %global vdsm_version 4.40.18
 
 Name:		ovirt-host
-Version:	4.4.2
-Release:	0.0%{?release_suffix}%{?dist}
+Version:	4.4.1
+Release:	4%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -150,6 +150,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Mon Jun 15 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.1-4
+- Fixes rhbz#1836026
+
 * Wed Jun 03 2020 Lev Veyde <lveyde@redhat.com> - 4.4.1-3
 - revert spec: require v2v-conversion-host-wrapper where available
 
