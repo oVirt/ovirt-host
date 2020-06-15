@@ -56,6 +56,8 @@ Requires:	aide
 Requires:	opensc
 Requires:	pcsc-lite
 Requires:	audispd-plugins
+# Helping cockpit when hardening: https://bugzilla.redhat.com/show_bug.cgi?id=1835661
+Requires:	sscg
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1722173
 Requires:	iperf3
@@ -68,10 +70,6 @@ Requires:	clevis-dracut
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1812014
 Requires: cracklib-dicts
-
-# the following packages requires a RHGS subscription on RHEL, keeping them
-# in oVirt Node only
-# Requires:	gdeploy
 
 # the following packages have dependencies which require RHGS subscription on
 # RHEL, keeping them in oVirt Node only
