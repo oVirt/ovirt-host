@@ -51,6 +51,11 @@ Requires:	ipa-client
 Requires:	openscap
 Requires:	scap-security-guide
 Requires:	aide
+# additional packages now required by STIG security profile
+# from https://bugzilla.redhat.com/show_bug.cgi?id=1836026
+Requires:	opensc
+Requires:	pcsc-lite
+Requires:	audispd-plugins
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1722173
 Requires:	iperf3
