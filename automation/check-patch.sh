@@ -38,13 +38,7 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install *$(arch).rpm || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        if [[ "${ARCH}" == "ppc64le" ]]; then
-            # ppc64le support is broken, just provide a hint on what's missing
-            # without causing the test to fail.
-            ${PACKAGER} --downloadonly install *$(arch).rpm || true
-        else
-            ${PACKAGER} --downloadonly install *$(arch).rpm
-        fi
+        ${PACKAGER} --downloadonly install *$(arch).rpm
         echo "Testing CentOS Stream"
         ${PACKAGER} remove ovirt-release-master
         ${PACKAGER} install -y centos-release-stream
@@ -59,12 +53,6 @@ pushd exported-artifacts
         ${PACKAGER} install -y ovirt-release-master
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
-        if [[ "$(rpm --eval "%_arch")" == "ppc64le" ]]; then
-            # ppc64le support is broken, just provide a hint on what's missing
-            # without causing the test to fail.
-            ${PACKAGER} --downloadonly install *$(arch).rpm || true
-        else
-            ${PACKAGER} --downloadonly install *$(arch).rpm
-        fi
+        ${PACKAGER} --downloadonly install *$(arch).rpm
     fi
 popd
