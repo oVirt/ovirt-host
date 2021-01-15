@@ -1,3 +1,4 @@
 git
 dnf
+dnf-plugins-core
 rpmlint
