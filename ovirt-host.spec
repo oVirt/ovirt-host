@@ -13,7 +13,7 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 
 #Inherited from oVirt Node
 Requires:	cockpit
-Requires:	cockpit-networkmanager
+Requires:	cockpit-system
 %ifarch x86_64
 Requires:	cockpit-ovirt-dashboard
 %endif
