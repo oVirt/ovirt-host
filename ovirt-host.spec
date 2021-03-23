@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.4.6
-Release:	0.0%{?release_suffix}%{?dist}
+Release:	0.1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -69,6 +69,9 @@ Requires:	clevis-dracut
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1812014
 Requires: cracklib-dicts
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1933245
+Requires: smartmontools
 
 # the following packages have dependencies which require RHGS subscription on
 # RHEL, keeping them in oVirt Node only
