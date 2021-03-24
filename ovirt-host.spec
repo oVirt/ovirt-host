@@ -1,8 +1,8 @@
-%global vdsm_version 4.40.50
+%global vdsm_version 4.40.60
 
 Name:		ovirt-host
 Version:	4.4.6
-Release:	0.1%{?release_suffix}%{?dist}
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -152,6 +152,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Wed Mar 24 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.6-1
+- Bump to 4.4.6
+
 * Wed Jan 27 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.5-1
 - Bump to 4.4.5
 
