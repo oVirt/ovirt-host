@@ -4,7 +4,6 @@ LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
 
 ./automation/build-artifacts.sh
 
-DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 ARCH="$(rpm --eval "%_arch")"
 PACKAGER=dnf
 export PACKAGER
@@ -14,8 +13,6 @@ on_exit() {
 }
 
 trap on_exit EXIT
-
-
 
 find \
     "$PWD/tmp.repos" \
@@ -35,24 +32,20 @@ pushd exported-artifacts
     if [[ "${ARCH}" == "s390x" ]]; then
         # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
-        ${PACKAGER} --downloadonly install *$(arch).rpm || true
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm" || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        ${PACKAGER} --downloadonly install *$(arch).rpm
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
         echo "Testing CentOS Stream"
         ${PACKAGER} remove ovirt-release-master
         ${PACKAGER} install -y centos-release-stream
         ${PACKAGER} repolist enabled
-        ${PACKAGER} --releasever=8-stream --disablerepo=* --enablerepo=Stream-BaseOS download centos-stream-repos
-        ${PACKAGER} install -y centos-stream-release
-        rpm -e --nodeps centos-linux-repos
-        rpm -i centos-stream-repo*
-        rm -fv centos-stream-repo*
+        ${PACKAGER} swap centos-linux-repos centos-stream-repos
         ls -l /etc/yum.repos.d/
         ${PACKAGER} distro-sync -y
         ${PACKAGER} install -y ovirt-release-master
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
-        ${PACKAGER} --downloadonly install *$(arch).rpm
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
     fi
 popd
