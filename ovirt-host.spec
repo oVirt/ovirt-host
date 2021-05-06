@@ -1,8 +1,8 @@
 %global vdsm_version 4.40.60
 
 Name:		ovirt-host
-Version:	4.4.6
-Release:	1.1%{?release_suffix}%{?dist}
+Version:	4.4.7
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -18,13 +18,9 @@ Requires:	cockpit-system
 Requires:	cockpit-ovirt-dashboard
 %endif
 Requires:	firewalld
+Requires:	libvirt
 Requires:	python3-firewall
 Requires:	rng-tools
-Requires:	vdsm-hook-fcoe
-Requires:	vdsm-hook-vhostmd
-Requires:	vdsm-hook-openstacknet
-Requires:	vdsm-hook-ethtool-options
-Requires:	vdsm-hook-vmfex-dev
 %ifarch x86_64
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
@@ -81,7 +77,7 @@ Requires: smartmontools
 This meta package pulls in all the dependencies needed for an oVirt hosts.
 
 %package dependencies
-Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts.
+Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts
 Requires:	collectd
 Requires:	collectd-disk
 Requires:	collectd-netlink
@@ -89,7 +85,7 @@ Requires:	collectd-write_http
 Requires:	collectd-virt
 
 %if 0%{?rhel}
-# collectd-write_syslog is available only on EL7
+# collectd-write_syslog is available only on RHEL and similar
 Requires:	collectd-write_syslog
 %endif
 
@@ -152,6 +148,10 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Thu May 06 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.7-1
+- Bump to 4.4.7
+- Resolves: BZ#1947450
+
 * Wed Mar 24 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.6-1
 - Bump to 4.4.6
 
