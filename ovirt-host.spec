@@ -115,6 +115,11 @@ Requires:	vdsm-client >= %{vdsm_version}
 # https://bugzilla.redhat.com/show_bug.cgi?id=1836645
 Requires:	ovirt-imageio-client
 
+# cinderlib integration
+# https://bugzilla.redhat.com/1955375
+Requires:   ceph-common
+Requires:   python3-os-brick
+
 %ifarch x86_64
 #{ CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
 %if 0%{?rhel}
