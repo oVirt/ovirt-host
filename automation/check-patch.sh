@@ -35,7 +35,7 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install ./*"$(arch).rpm" || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm" || echo "CentOS Linux missing sanlock, not failing on this"
         echo "Testing CentOS Stream"
         ${PACKAGER} remove ovirt-release-master
         ${PACKAGER} install -y centos-release-stream
