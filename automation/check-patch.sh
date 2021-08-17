@@ -47,5 +47,10 @@ pushd exported-artifacts
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
         ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
+    elif
+     [[ "$(rpm --eval "%dist")" == ".el9" ]]; then
+        # el9 support is broken since we just started working on it, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm" || true
     fi
 popd
