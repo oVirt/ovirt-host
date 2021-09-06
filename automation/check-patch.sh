@@ -1,5 +1,9 @@
 #!/bin/bash -xe
 
+# mock runner is not setting up the system correctly
+# https://issues.redhat.com/browse/CPDEVOPS-242
+dnf install -y $(cat automation/check-patch.packages)
+
 LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
 
 ./automation/build-artifacts.sh
