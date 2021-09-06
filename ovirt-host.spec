@@ -1,8 +1,8 @@
-%global vdsm_version 4.40.80
+%global vdsm_version 4.50
 
 Name:		ovirt-host
 Version:	4.5.0
-Release:	0.0%{?release_suffix}%{?dist}
+Release:	0.1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -14,18 +14,24 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 #Inherited from oVirt Node
 Requires:	cockpit
 Requires:	cockpit-system
+
 %ifarch x86_64
+# Hosted Engine is supported only on x86_64 architecture.
+Requires:	glusterfs-rdma
+Requires:	ovirt-hosted-engine-setup
+Requires:	ovirt-provider-ovn-driver
+%if 0%{?rhel} < 9
+# On CentOS Stream 9 we are going to use ansible 2.11
+# The whole way of consuming anisble roles is going to change:
+# skipping cockpit-ovirt-dashboard dependencies
 Requires:	cockpit-ovirt-dashboard
 %endif
+%endif
+
 Requires:	firewalld
 Requires:	libvirt
 Requires:	python3-firewall
 Requires:	rng-tools
-%ifarch x86_64
-Requires:	glusterfs-rdma
-Requires:	ovirt-hosted-engine-setup
-Requires:	ovirt-provider-ovn-driver
-%endif
 Requires:	server(smtp)
 Suggests:	postfix
 Requires:	mailx
