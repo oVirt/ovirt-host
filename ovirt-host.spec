@@ -34,13 +34,21 @@ Requires:	python3-firewall
 Requires:	rng-tools
 Requires:	server(smtp)
 Suggests:	postfix
-Requires:	mailx
 Requires:	dracut-fips
 Requires:	sysstat
 Requires:	tcpdump
 Requires:	tmux
 Requires:	net-snmp
 Requires:	net-snmp-utils
+
+# from https://bugzilla.redhat.com/1335503
+%if 0%{?rhel} >= 9
+# mailx has been replaced by s-nail on RHEL 9
+# https://bugzilla.redhat.com/2001537
+Requires:	s-nail
+%else
+Requires:	mailx
+%endif
 
 # Hack to include the passive NM config: https://bugzilla.redhat.com/1326798
 Requires:	NetworkManager-config-server
