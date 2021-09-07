@@ -17,7 +17,7 @@ Requires:	cockpit-system
 
 %ifarch x86_64
 # Hosted Engine is supported only on x86_64 architecture.
-Requires:	glusterfs-rdma
+Requires:	glusterfs
 Requires:	ovirt-hosted-engine-setup
 Requires:	ovirt-provider-ovn-driver
 %if 0%{?rhel} < 9
