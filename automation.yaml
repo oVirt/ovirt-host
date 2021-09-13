@@ -2,6 +2,8 @@
 archs:
   - ppc64le:
       distro: el8stream
+  - s390x:
+      distro: el9stream
   - x86_64:
       distro:
         - el8stream
