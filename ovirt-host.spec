@@ -92,6 +92,9 @@ This meta package pulls in all the dependencies needed for an oVirt hosts.
 
 %package dependencies
 Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts
+
+%if 0%{?rhel} < 9
+# collectd is not yet available in CentOS OpsTools SIG
 Requires:	collectd
 Requires:	collectd-disk
 Requires:	collectd-netlink
@@ -101,6 +104,7 @@ Requires:	collectd-virt
 %if 0%{?rhel}
 # collectd-write_syslog is available only on RHEL and similar
 Requires:	collectd-write_syslog
+%endif
 %endif
 
 %ifarch %{ix86} x86_64
