@@ -2,7 +2,8 @@
 
 # mock runner is not setting up the system correctly
 # https://issues.redhat.com/browse/CPDEVOPS-242
-dnf install -y $(cat automation/check-patch.packages)
+readarray -t pkgs < automation/check-patch.packages
+dnf install -y "${pkgs[@]}"
 
 LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
 
@@ -53,8 +54,6 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
     elif
      [[ "$(rpm --eval "%dist")" == ".el9" ]]; then
-        # el9 support is broken since we just started working on it, just provide a hint on what's missing
-        # without causing the test to fail.
-        ${PACKAGER} --downloadonly install ./*"$(arch).rpm" || true
+        ${PACKAGER} --downloadonly install ./*"$(arch).rpm"
     fi
 popd
