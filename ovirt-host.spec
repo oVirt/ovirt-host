@@ -1,8 +1,8 @@
-%global vdsm_version 4.40.80
+%global vdsm_version 4.40.90
 
 Name:		ovirt-host
-Version:	4.4.8
-Release:	1.1%{?release_suffix}%{?dist}
+Version:	4.4.9
+Release:	0.0%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -125,12 +125,8 @@ Requires:   ceph-common
 Requires:   python3-os-brick
 
 %ifarch x86_64
-#{ CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
-%if 0%{?rhel}
-Requires:	microcode_ctl >= 2.1-47.2
-%else
-Requires:	microcode_ctl >= 2.1-29
-%endif
+#{ CVE-2020-24489
+Requires:	microcode_ctl >= 20210216
 #}
 %endif
 
