@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.4.9
-Release:	0.0%{?release_suffix}%{?dist}
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -153,6 +153,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Fri Oct 01 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9-1
+- Bump to 4.4.9
+
 * Fri Jul 16 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.8-1
 - Bump to 4.4.8
 - Resolves: BZ#1955375
