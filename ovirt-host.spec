@@ -1,4 +1,4 @@
-%global vdsm_version 4.50
+%global vdsm_version 4.50.0
 
 Name:		ovirt-host
 Version:	4.5.0
@@ -143,12 +143,8 @@ Requires:   ceph-common
 Requires:   python3-os-brick
 
 %ifarch x86_64
-#{ CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091
-%if 0%{?rhel}
-Requires:	microcode_ctl >= 2.1-47.2
-%else
-Requires:	microcode_ctl >= 2.1-29
-%endif
+#{ CVE-2020-24489
+Requires:      microcode_ctl >= 2021021
 #}
 %endif
 
