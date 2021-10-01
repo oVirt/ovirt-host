@@ -101,6 +101,10 @@ Requires:	rsyslog
 Requires:	rsyslog-elasticsearch
 Requires:	rsyslog-mmjsonparse
 Requires:	rsyslog-mmnormalize
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1984886
+Requires:	rsyslog-openssl
+
 Requires:	libfastjson
 Requires:	liblognorm
 Requires:	libestr
