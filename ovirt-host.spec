@@ -121,8 +121,10 @@ Requires:	ovirt-imageio-client
 
 # cinderlib integration
 # https://bugzilla.redhat.com/1955375
+%ifarch x86_64
 Requires:   ceph-common
 Requires:   python3-os-brick
+%endif
 
 %ifarch x86_64
 #{ CVE-2020-24489
