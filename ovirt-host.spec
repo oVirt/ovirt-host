@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.4.9
-Release:	1.1%{?release_suffix}%{?dist}
+Release:	2%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -155,6 +155,9 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Wed Oct 13 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9-2
+- Require cinderlib only on x86_64
+
 * Fri Oct 01 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9-1
 - Bump to 4.4.9
 
