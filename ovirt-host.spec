@@ -2,7 +2,7 @@
 
 Name:		ovirt-host
 Version:	4.5.0
-Release:	0.1%{?release_suffix}%{?dist}
+Release:	0.2%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -54,7 +54,8 @@ Requires:	mailx
 Requires:	NetworkManager-config-server
 
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1490041
-Requires:	ipa-client
+# only recommending from https://bugzilla.redhat.com/show_bug.cgi?id=2017681
+Recommends:	ipa-client
 
 # Hardening packages - from https://bugzilla.redhat.com/show_bug.cgi?id=1598318
 Requires:	openscap
