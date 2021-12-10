@@ -1,0 +1,95 @@
+---
+name: Check patch
+permissions:
+  pull-requests: read
+  contents: read
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-el8:
+
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream8
+
+    steps:
+    - name: prepare env
+      run: |
+          echo ${{ github.base_ref }}
+          echo ${{ github.ref }}
+          dnf install -y --setopt=tsflags=nodocs git rpm-build rpmlint glibc-langpack-en dnf-plugins-core
+          dnf copr enable -y ovirt/ovirt-master-snapshot centos-stream-8
+          dnf install -y ovirt-release-master
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Run rpmlint
+      run: LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
+
+    - name: Build RPM
+      run: |
+        mkdir -p tmp.repos/SOURCES
+        cp LICENSE tmp.repos/SOURCES
+        rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ba ovirt-host.spec
+
+    - name: Collect artifacts
+      run: |
+          mkdir -p exported-artifacts
+          find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
+
+    - name: Test install
+      run: |
+          yum --downloadonly install -y exported-artifacts/*x86_64.rpm
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: exported-artifacts/
+
+
+  build-el9:
+    # Building only on master as we don't support el9 in 4.4.
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+    if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
+    steps:
+    - name: prepare env
+      run: |
+          dnf install -y --setopt=tsflags=nodocs git rpm-build rpmlint glibc-langpack-en dnf-plugins-core
+          dnf copr enable -y ovirt/ovirt-master-snapshot
+          dnf install -y ovirt-release-master
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Run rpmlint
+      run: LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
+
+    - name: Build RPM
+      run: |
+        mkdir -p tmp.repos/SOURCES
+        cp LICENSE tmp.repos/SOURCES
+        rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ba ovirt-host.spec
+
+    - name: Collect artifacts
+      run: |
+          mkdir -p exported-artifacts
+          find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
+
+    - name: Test install
+      run: |
+          yum --downloadonly install -y exported-artifacts/*x86_64.rpm
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: exported-artifacts/
