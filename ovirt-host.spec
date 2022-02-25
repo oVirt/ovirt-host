@@ -83,6 +83,9 @@ Requires: cracklib-dicts
 # https://bugzilla.redhat.com/show_bug.cgi?id=1933245
 Requires: smartmontools
 
+# https://bugzilla.redhat.com/show_bug.cgi?id=2058177
+Requires: nvme-cli
+
 # the following packages have dependencies which require RHGS subscription on
 # RHEL, keeping them in oVirt Node only
 # Requires:	vdsm-gluster -> glusterfs-server
