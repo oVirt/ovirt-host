@@ -1,8 +1,8 @@
-%global vdsm_version 4.50.0.5
+%global vdsm_version 4.50.0.8
 
 Name:		ovirt-host
 Version:	4.5.0
-Release:	0.5%{?release_suffix}%{?dist}
+Release:	1%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -177,6 +177,15 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Fri Mar 04 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-1
+- Bump to 4.5.0
+
+* Wed Oct 13 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9-2
+- Require cinderlib only on x86_64
+
+* Fri Oct 01 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9-1
+- Bump to 4.4.9
+
 * Fri Jul 16 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.8-1
 - Bump to 4.4.8
 - Resolves: BZ#1955375
