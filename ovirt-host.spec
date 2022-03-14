@@ -58,7 +58,7 @@ Requires:	ipa-client
 
 # Hardening packages - from https://bugzilla.redhat.com/show_bug.cgi?id=1598318
 Requires:	openscap
-Requires:	scap-security-guide
+Requires:	scap-security-guide >= 0.1.60-4
 Requires:	aide
 # additional packages now required by STIG security profile
 # from https://bugzilla.redhat.com/show_bug.cgi?id=1836026
