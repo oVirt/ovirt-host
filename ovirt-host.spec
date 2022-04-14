@@ -97,15 +97,15 @@ This meta package pulls in all the dependencies needed for an oVirt hosts.
 Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts
 %ifnarch s390x
 # Not available for s390x yet
-Requires:	collectd >= 5.12.0-7
-Requires:	collectd-disk >= 5.12.0-7
-Requires:	collectd-netlink >= 5.12.0-7
-Requires:	collectd-write_http >= 5.12.0-7
-Requires:	collectd-virt >= 5.12.0-7
+Requires:	collectd >= 5.12.0-7.2
+Requires:	collectd-disk >= 5.12.0-7.2
+Requires:	collectd-netlink >= 5.12.0-7.2
+Requires:	collectd-write_http >= 5.12.0-7.2
+Requires:	collectd-virt >= 5.12.0-7.2
 
 %if 0%{?rhel}
 # collectd-write_syslog is available only on RHEL and similar
-Requires:	collectd-write_syslog >= 5.12.0-7
+Requires:	collectd-write_syslog >= 5.12.0-7.2
 %endif
 
 %endif
