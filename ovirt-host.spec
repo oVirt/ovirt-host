@@ -15,18 +15,26 @@ Requires:	%{name}-dependencies = %{version}-%{release}
 Requires:	cockpit
 Requires:	cockpit-system
 
+# Hosted Engine
 %ifarch x86_64
 # Hosted Engine is supported only on x86_64 architecture.
-Requires:	glusterfs
 Requires:	ovirt-hosted-engine-setup
 Requires:	ovirt-provider-ovn-driver
+
+%if 0%{?rhel} < 10
+# GlusterFS in missing on CentOS Stream 10
+Requires:	glusterfs
+%endif
+
 %if 0%{?rhel} < 9
 # On CentOS Stream 9 we are going to use ansible 2.11
 # The whole way of consuming anisble roles is going to change:
 # skipping cockpit-ovirt-dashboard dependencies
 Requires:	cockpit-ovirt-dashboard
 %endif
+
 %endif
+
 
 Requires:	firewalld
 Requires:	libvirt
@@ -97,6 +105,8 @@ This meta package pulls in all the dependencies needed for an oVirt hosts.
 Summary:	This meta package pulls in all the dependencies needed for minimal oVirt hosts
 %ifnarch s390x
 # Not available for s390x yet
+%if 0%{?rhel} < 10
+# CollectD is missing on CentOS Stream 10
 Requires:	collectd >= 5.12.0-7
 Requires:	collectd-disk >= 5.12.0-7
 Requires:	collectd-netlink >= 5.12.0-7
@@ -107,6 +117,9 @@ Requires:	collectd-virt >= 5.12.0-7
 # collectd-write_syslog is available only on RHEL and similar
 Requires:	collectd-write_syslog >= 5.12.0-7
 %endif
+# end of collectd-write_syslog limitation to RHEL
+%endif
+# end of CentOS Stream >= 10 exclusion
 
 %endif
 # end of s390x collectd exclusion
@@ -145,7 +158,10 @@ Requires:	ovirt-imageio-client
 # https://bugzilla.redhat.com/1955375
 %ifarch x86_64
 Requires:   ceph-common
+%if 0%{?rhel} < 10
+# python3-os-brick is missing on CentOS Stream 10
 Requires:   python3-os-brick
+%endif
 %endif
 
 %ifarch x86_64
@@ -167,8 +183,11 @@ cp %{SOURCE0} .
 %build
 # No build needed
 
+%check
+# No check needed
+
 %install
-# No build needed
+# No install needed
 
 %files
 %license LICENSE
