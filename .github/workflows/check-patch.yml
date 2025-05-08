@@ -16,12 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: centos-stream-8
-            shortcut: cs8
-            container-name: el8stream
           - name: centos-stream-9
             shortcut: cs9
             container-name: el9stream
+          - name: centos-stream-10
+            shortcut: cs10
+            container-name: el10stream
 
     env:
       ARTIFACTS_DIR: exported-artifacts
@@ -33,10 +33,19 @@ jobs:
 
     steps:
       - name: prepare env
+        if: ${{ matrix.shortcut == 'cs9' }}
         run: |
             dnf install -y --setopt=tsflags=nodocs git rpmlint glibc-langpack-en
 
-      - uses: actions/checkout@v2
+      - name: prepare env
+        if: ${{ matrix.shortcut == 'cs10' }}
+        run: |
+          dnf install -y epel-release
+          dnf install -y rpmlint
+          dnf config-manager --set-disable epel
+          dnf install -y --setopt=tsflags=nodocs git glibc-langpack-en
+
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -59,6 +68,6 @@ jobs:
             yum --downloadonly install -y exported-artifacts/*x86_64.rpm
 
       - name: Upload RPMs
-        uses: ovirt/upload-rpms-action@v2
+        uses: ovirt/upload-rpms-action@main
         with:
           directory: ${{ env.ARTIFACTS_DIR }}
