@@ -157,8 +157,9 @@ Requires:	ovirt-imageio-client
 # cinderlib integration
 # https://bugzilla.redhat.com/1955375
 %ifarch x86_64
-Requires:   ceph-common
 %if 0%{?rhel} < 10
+# Requirements for ceph-common are only in EPEL
+Requires:   ceph-common
 # python3-os-brick is missing on CentOS Stream 10
 Requires:   python3-os-brick
 %endif
