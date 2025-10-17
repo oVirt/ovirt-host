@@ -42,7 +42,6 @@ jobs:
         run: |
           dnf install -y epel-release
           dnf install -y rpmlint
-          dnf config-manager --set-disable epel
           dnf install -y --setopt=tsflags=nodocs git glibc-langpack-en
 
       - uses: actions/checkout@v4
