@@ -1,8 +1,8 @@
 %global vdsm_version 4.50.0.11
 
 Name:		ovirt-host
-Version:	4.5.0
-Release:	3.1%{?release_suffix}%{?dist}
+Version:	4.5.1
+Release:	1%{?release_suffix}%{?dist}
 Summary:	Track required packages for oVirt hosts
 License:	ASL 2.0
 URL:		https://www.ovirt.org/
@@ -197,6 +197,10 @@ cp %{SOURCE0} .
 %license LICENSE
 
 %changelog
+* Fri Oct 17 2025 Jean-Louis Dupond <jean-louis@dupond.be> - 4.5.1-1
+- Bump to 4.5.1
+- Add CentOS 10 support
+
 * Fri Apr 08 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-3
 - Bump to 4.5.0-3
 
