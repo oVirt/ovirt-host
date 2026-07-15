@@ -1,0 +1,102 @@
+---
+name: Build
+
+on:
+  push:
+    branches: [master]
+    tags: ['*']
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: almalinux-9
+            shortcut: el9
+            container-name: almalinux9
+          - name: almalinux-10
+            shortcut: el10
+            container-name: almalinux10
+          - name: centos-stream-9
+            shortcut: el9s
+            container-name: el9stream
+          - name: centos-stream-10
+            shortcut: el10s
+            container-name: el10stream
+
+    env:
+      ARTIFACTS_DIR: exported-artifacts
+
+    name: Build on ${{ matrix.name }}
+
+    container:
+      image: quay.io/ovirt/buildcontainer:${{ matrix.container-name }}
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v7
+
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory "$(pwd)"
+
+      - name: Install dependencies
+        run: |
+          dnf install -y epel-release
+          dnf install -y --setopt=tsflags=nodocs git rpm-build rpmlint glibc-langpack-en
+
+      - name: Set build environment
+        run: |
+          TAG=$(git tag --points-at HEAD | head -1)
+          if [[ -n "$TAG" ]]; then
+            if [[ "$TAG" =~ -([0-9]+)$ ]]; then
+              echo "PACKAGE_RPM_RELEASE=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+            else
+              echo "PACKAGE_RPM_RELEASE=1" >> $GITHUB_ENV
+            fi
+            echo "RELEASE_SUFFIX=" >> $GITHUB_ENV
+          else
+            echo "PACKAGE_RPM_RELEASE=0.master" >> $GITHUB_ENV
+            echo "RELEASE_SUFFIX=.$(date --utc +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          fi
+
+      - name: Run rpmlint
+        run: LC_ALL=en_US.UTF-8 rpmlint ovirt-host.spec
+
+      - name: Build RPM
+        run: |
+          mkdir -p tmp.repos/SOURCES
+          cp LICENSE tmp.repos/SOURCES
+          rpmbuild \
+            -D "_topdir ${PWD}/tmp.repos" \
+            -D "package_rpm_release ${PACKAGE_RPM_RELEASE}" \
+            -D "release_suffix ${RELEASE_SUFFIX}" \
+            -ba ovirt-host.spec
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p exported-artifacts
+          find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
+
+      - name: Test install
+        run: dnf --downloadonly install -y exported-artifacts/*x86_64.rpm
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: rpm-${{ matrix.shortcut }}
+          path: ${{ env.ARTIFACTS_DIR }}
+
+  publish-rpms:
+    permissions:
+      artifact-metadata: read
+    needs: build
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    uses: ovirt/ovirt-workflows/.github/workflows/publish-rpms.yml@main
+    secrets: inherit
