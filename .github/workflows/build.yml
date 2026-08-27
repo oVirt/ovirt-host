@@ -62,7 +62,6 @@ jobs:
             fi
             echo "RELEASE_SUFFIX=" >> $GITHUB_ENV
           else
-            echo "PACKAGE_RPM_RELEASE=0.master" >> $GITHUB_ENV
             echo "RELEASE_SUFFIX=.$(date --utc +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           fi
 
@@ -75,7 +74,7 @@ jobs:
           cp LICENSE tmp.repos/SOURCES
           rpmbuild \
             -D "_topdir ${PWD}/tmp.repos" \
-            -D "package_rpm_release ${PACKAGE_RPM_RELEASE}" \
+            ${PACKAGE_RPM_RELEASE:+-D "package_rpm_release ${PACKAGE_RPM_RELEASE}"} \
             -D "release_suffix ${RELEASE_SUFFIX}" \
             -ba ovirt-host.spec
 

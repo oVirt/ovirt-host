@@ -1,6 +1,6 @@
 %global vdsm_version 4.50.0.11
 
-%{!?package_rpm_release: %global package_rpm_release 0.master}
+%{!?package_rpm_release: %global package_rpm_release 1.master}
 
 Name:		ovirt-host
 Version:	4.5.1
